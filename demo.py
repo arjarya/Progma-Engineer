@@ -5,3 +5,4 @@ elif "how are you" in user:
     print("AI: I’m just code, but I’m great! 😃")
 else:
     print("AI: Sorry, I don’t understand that yet.")
+    
