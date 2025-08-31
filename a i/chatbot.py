@@ -7,6 +7,11 @@ while True:
         print("AI: Hi there! 👋")
   elif "how are you" in user:
         print("AI: I’m just code, but I’m great! 😃")
+  elif "how can you help me" in user or "help me" in user:
+        print("AI: I can assist you with various tasks! 🤖")
+  elif "i want to talk" in user or "let's talk" in user:
+        print("AI: Sure! What would you like to talk about? 🗣️")
+
   elif "what can you do" in user:
         print("AI: I can chat with you and answer simple questions! 🤖")
   elif "bye" in user or "goodbye" in user:

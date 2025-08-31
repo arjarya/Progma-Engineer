@@ -1,14 +1,31 @@
-user = input("You: ").lower()
+import os
 
-if "hello" in user or "hi" in user:
-    print("AI: Hi there! 👋")
-elif "how are you" in user:
-    print("AI: I’m just code, but I’m great! 😃")
-elif "bye" in user:
-    print("AI: Goodbye! Have a nice day 👋")
-elif "thanks" in user or "thank you" in user:
-    print("AI: You’re welcome! 🙌")
-elif "name" in user:
-    print("AI: I’m a simple AI chatbot 🤖")
-else:
-    print("AI: Sorry, I don’t understand that yet.")
+# Clear screen (works for Windows, for Linux/macOS replace 'cls' with 'clear')
+os.system('cls')
+
+print("Welcome to the AI Chatbot! Type 'bye' to exit.\n")
+
+# Dictionary of simple responses
+responses = {
+    "hello": "Hi there! 👋",
+    "hi": "Hello! 😊",
+    "how are you": "I’m just code, but I’m great! 😃",
+    "what can you do": "I can chat with you and answer simple questions! 🤖",
+    "thanks": "You are welcome! 🙌",
+    "thank you": "No problem! 👍",
+    "name": "I’m a simple AI chatbot 🤖",
+    "what is your name": "I’m your friendly chatbot 🤖"
+}
+
+while True:
+    user = input("You: ").lower()
+    
+    if user in ["bye", "goodbye", "exit", "quit"]:
+        print("AI: Goodbye! Have a nice day 👋")
+        break  # Exit the loop
+    
+    elif user in responses:
+        print("AI:", responses[user])
+    
+    else:
+        print("AI: Sorry, I don’t understand that yet.")

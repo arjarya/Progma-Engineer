@@ -1,0 +1,10 @@
+[2025-08-31 12:22:29] User: hi
+[2025-08-31 12:22:29] Nova: Hi there! 👋
+[2025-08-31 12:22:34] User: how are you
+[2025-08-31 12:22:34] Nova: I’m just code, but I’m doing great! 😃
+[2025-08-31 12:22:40] User: what can you do
+[2025-08-31 12:22:40] Nova: I handle greetings, small talk, time/date, name memory, and more. Type 'help' to see options.
+[2025-08-31 12:23:54] User: C:\Users\india\AppData\Local\Programs\Python\Python313\python.exe "c:/Users/india/Desktop/Progma Engineer/demo1.py"
+[2025-08-31 12:23:54] Nova: I didn’t get that. Try 'help' to see what I can do.
+[2025-08-31 12:24:03] User: exit
+[2025-08-31 12:24:03] Nova: Goodbye! Have a nice day 👋
