@@ -1,25 +1,21 @@
 import os
-os.system('cls')
-print("Welcome to the AI Chatbot, Type 'bye' to exit the chat.")
+print("Welcome to AI, say bye to exit. \n")
+response = {
+    "hello": "hi there! 👋",
+    "hi": "hello! 👋",
+    "how are you": "I'm good, how can help you?",
+    "what can you do": "i can help you with various tasks.",
+    "thanks": "you are welcome!",
+    "thank you": "welcome!",
+    "name": "i am a simple AI chatbot.",
+    "what is your name": "i am your friendly AI chatbot.",
+}
 while True:
-  user = input("you: ").lower()
-  if "hello" in user or "hi" in user:
-        print("AI: Hi there! 👋")
-  elif "how are you" in user:
-        print("AI: I’m just code, but I’m great! 😃")
-  elif "how can you help me" in user or "help me" in user:
-        print("AI: I can assist you with various tasks! 🤖")
-  elif "i want to talk" in user or "let's talk" in user:
-        print("AI: Sure! What would you like to talk about? 🗣️")
-
-  elif "what can you do" in user:
-        print("AI: I can chat with you and answer simple questions! 🤖")
-  elif "bye" in user or "goodbye" in user:
-        print("AI: Goodbye! Have a nice day👋")
-        break # Exit the loop and end the chat
-  elif "thanks" in user or "thank you" in user:
-        print("AI: you are welcome! 🙌")
-  elif "name" in user or "what is your name" in user:
-        print("AI: I’m a simple AI chatbot 🤖")
-  else:
-        print("AI: Sorry, I don’t understand that yet.")
+    user = input("You: ").lower()
+    if user in ["bye", "bi", "goodbye", "exit", "quit"]:
+     print("AI: Goodbye! have a great day")
+     break
+    elif user in response:
+     print("AI:", response[user])
+    else:
+     print("AI: I'm sorry, I don't understand that.")
