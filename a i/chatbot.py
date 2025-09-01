@@ -1,4 +1,5 @@
 import os
+os.system('cls')
 print("Welcome to AI, say bye to exit. \n")
 response = {
     "hello": "hi there! 👋",
