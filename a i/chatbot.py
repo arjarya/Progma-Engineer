@@ -18,7 +18,6 @@ while True:
      print("AI: Goodbye! have a great day")
      break 
     found = False
-    user_words = user.split() # split user input into words
     for key in response:
        if key in user:  # check if any key is in user input:
           print("AI:", response[key])
@@ -26,3 +25,4 @@ while True:
           break 
     if not found:
        print("AI: I am sorry, i do not understand, Try again")
+
