@@ -1,9 +1,10 @@
 import os
 os.system('cls')
-print("AI: Welcom to ChatBot AI, say bye to exit. \n")
+print("AI: Welcome to ChatBot AI, say bye to exit. \n")
 response = {
     "hello": "hi there! 👋",
     "hi": "hello! 👋",
+    "how you": "I'm good, how can help you?",
     "how are you": "I'm good, how can help you?",
     "what can you do": "i can help you with various tasks.",
     "thanks": "you are welcome!",
@@ -17,15 +18,11 @@ while True:
      print("AI: Goodbye! have a great day")
      break 
     found = False
+    user_words = user.split() # split user input into words
     for key in response:
-       if key in user:
+       if key in user:  # check if any key is in user input:
           print("AI:", response[key])
           found = True
           break 
     if not found:
        print("AI: I am sorry, i do not understand, Try again")
-     
-   
-
-     
-
