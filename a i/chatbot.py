@@ -12,6 +12,9 @@ response = {
     "name": "i am a simple AI chatbot.",
     "what is your name": "i am your friendly AI chatbot.",
 }
+memory = {
+    "name": None
+}
 while True:
     user = input("You:").lower()
     if user in ["bye", "bi", "goodbye", "exit", "quit"]:
