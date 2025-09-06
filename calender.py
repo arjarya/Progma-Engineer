@@ -6,6 +6,11 @@ while True:
  month = int(input("Enter month[1-12]: "))
  if 1<= month <=12:
     print(calendar.month(year, month))
-    break
+    
  else:
     print("Invalid month")
+    continue # only skip back if month is invalid
+ choice = input("Do you want see another month: (y/n)")
+ if choice.lower() != "y":
+  print("goodbye")
+  break
