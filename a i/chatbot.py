@@ -9,7 +9,6 @@ response = {
     "what can you do": "i can help you with various tasks.",
     "thanks": "you are welcome!",
     "thank you": "welcome!",
-    "name": "i am a simple AI chatbot.",
     "what is your name": "i am your friendly AI chatbot.",
 }
 memory = {
