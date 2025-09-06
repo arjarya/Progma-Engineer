@@ -1,31 +1,16 @@
 import os
-
-# Clear screen (works for Windows, for Linux/macOS replace 'cls' with 'clear')
-os.system('cls')
-
-print("Welcome to the AI Chatbot! Type 'bye' to exit.\n")
-
-# Dictionary of simple responses
-responses = {
-    "hello": "Hi there! 👋",
-    "hi": "Hello! 😊",
-    "how are you": "I’m just code, but I’m great! 😃",
-    "what can you do": "I can chat with you and answer simple questions! 🤖",
-    "thanks": "You are welcome! 🙌",
-    "thank you": "No problem! 👍",
-    "name": "I’m a simple AI chatbot 🤖",
-    "what is your name": "I’m your friendly chatbot 🤖"
-}
-
+os.system("cls")
+import calendar
+year = int(input("Enter year(e.g, 2025): "))
 while True:
-    user = input("You: ").lower()
+ month = int(input("Enter month[1-12]: "))
+ if 1<= month <=12:
+    print(calendar.month(year, month))
     
-    if user in ["bye", "goodbye", "exit", "quit"]:
-        print("AI: Goodbye! Have a nice day 👋")
-        break  # Exit the loop
-    
-    elif user in responses:
-        print("AI:", responses[user])
-    
-    else:
-        print("AI: Sorry, I don’t understand that yet.")
+ else:
+    print("Invalid month")
+    continue # only skip back if month is invalid
+ choice = input("Do you want see another month: (y/n)")
+ if choice.lower() != "y":
+  print("goodbye")
+  break
