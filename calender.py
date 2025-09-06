@@ -1,9 +1,8 @@
 import os
 os.system("cls")
 import calendar
-year = 2025
+year = int(input("Enter year: "))
 while True:
- year = int(input("Enter year: "))
  month = int(input("Enter month[1-12]: "))
  if 1<= month <=12:
     print(calendar.month(year, month))
