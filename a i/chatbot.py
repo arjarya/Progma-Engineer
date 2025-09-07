@@ -24,7 +24,7 @@ while True:
         memory["name"] = user.split("my name is")[-1].strip().capitalize()
         print(f"AI: Nice to meet you, {memory['name']}")
         found = True
-    elif "what is my name" in user:
+    elif "what is my name" in user or "do you know my name" in user:
         if memory["name"]:
            print(f"AI: your name is {memory['name']}")
         else:
