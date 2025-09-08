@@ -10,7 +10,7 @@ while True:
  else:
     print("Invalid month")
     continue # only skip back if month is invalid
- choice = input("Do you want see another month: (y/n)")
- if choice.lower() != "y":
+ choice = input("Do you want see another month: (y/n)").lower().strip()
+ if choice != "y":
   print("goodbye")
   break
