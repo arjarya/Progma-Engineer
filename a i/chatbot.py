@@ -13,7 +13,7 @@ response = {
 }
 memory = {
    "name": None, # None is python keyword for null value
-    "age": None
+    "age": None  #add age
 }
 while True:
     user = input("You:").lower()
@@ -32,7 +32,7 @@ while True:
          found = True
     elif "what is my age" in user or "do you know my age" in user:
         if memory["age"]:
-            print(f"AI: Got it! you are {memory['age']} years old  ")
+            print(f"AI: Got it! You are {memory['age']} years old")
         else:
            print("AI: I don't know your age yet")
         found = True
@@ -40,7 +40,7 @@ while True:
     # Recall name if user asks
     elif "what is my name" in user or "do you know my name" in user:
         if memory["name"]:
-           print(f"AI: your name is {memory['name']}")
+           print(f"AI: Your name is {memory['name']}")
         else:
            print("AI: I don't know your name yet")
         found = True
@@ -54,4 +54,4 @@ while True:
               break 
     # Default reply
     if not found:
-       print("AI: I am sorry, i do not understand, Try again")
+       print("AI: I am sorry, I do not understand, Try again")
