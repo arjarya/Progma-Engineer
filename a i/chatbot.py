@@ -23,7 +23,7 @@ while True:
     found = False
     # Store name if user says "my name is ..."
     if "my name is" in user:
-        memory["name"] = user.split("my name is")[-1].strip().capitalize()
+        memory["name"] = user.split("my name is")[-1].strip().title()
         print(f"AI: Nice to meet you, {memory['name']}")
         found = True
     elif "my age is" in user:
