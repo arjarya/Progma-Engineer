@@ -29,3 +29,44 @@ def add_fibonacci(df, lookback=60):
 
     return df
 
+#Data Prepration
+
+def data_prepare(symbol):
+    df = yf.download(symbol, period= PERIOD, interval= INTERVAL, progress= False)
+    if df.empty() or len(df) < 200:
+        return None, None, None
+    
+    #force 1D series
+
+    close = df['Close'].squeeze()
+    volume = df['Volume'].squeeze()
+
+    df['sma20'] = close.rolling(20).mean()
+    df['sma50'] = close.rolling(50).mean()
+
+    df['rsi'] = RSIIndicator(close, window=14).rsi
+
+    df['vol_sma20'] = close.rolling(20).mean()
+    df['vol_ratio'] = volume/df['vol_sma20']
+
+    df = add_fibonacci(df, FIB_LOOKBACK)
+
+    df['target'] = np.where(close.shift(-5) > close, 1, 0)
+    df.dropna(inplace= True)
+
+    FEATURE = [
+        'rsi',
+        'sma20',
+        'sma50',
+        'dist_fib_382',
+        'dist_fib_500',
+        'dist_fib_618'
+    ]
+
+    X = [FEATURE]
+    y= ['target']
+
+    return X, y, df
+
+
+    
