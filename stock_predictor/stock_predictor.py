@@ -44,9 +44,9 @@ def data_prepare(symbol):
     df['sma20'] = close.rolling(20).mean()
     df['sma50'] = close.rolling(50).mean()
 
-    df['rsi'] = RSIIndicator(close, window=14).rsi
+    df['rsi'] = RSIIndicator(close, window=14).rsi()
 
-    df['vol_sma20'] = close.rolling(20).mean()
+    df['vol_sma20'] = volume.rolling(20).mean()
     df['vol_ratio'] = volume/df['vol_sma20']
 
     df = add_fibonacci(df, FIB_LOOKBACK)
@@ -63,10 +63,19 @@ def data_prepare(symbol):
         'dist_fib_618'
     ]
 
-    X = [FEATURE]
-    y= ['target']
+    X =df[FEATURE]
+    y= df['target']
 
     return X, y, df
+
+#model
+model = RandomForestClassifier(
+    n_estimators= 100,
+    max_depth= 6,
+    min_samples_leaf= 15,
+    n_jobs= 1,
+    random_state= 42
+)
 
 
     
