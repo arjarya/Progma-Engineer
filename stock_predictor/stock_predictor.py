@@ -31,7 +31,7 @@ def add_fibonacci(df, lookback=60):
 
 #Data Prepration
 
-def data_prepare(symbol):
+def prepare_data(symbol):
     df = yf.download(symbol, period= PERIOD, interval= INTERVAL, progress= False)
     if df.empty() or len(df) < 200:
         return None, None, None
@@ -60,7 +60,8 @@ def data_prepare(symbol):
         'sma50',
         'dist_fib_382',
         'dist_fib_500',
-        'dist_fib_618'
+        'dist_fib_618',
+        'vol_ratio'
     ]
 
     X =df[FEATURE]
@@ -76,6 +77,23 @@ model = RandomForestClassifier(
     n_jobs= 1,
     random_state= 42
 )
+
+#run model
+
+for stock in STOCKS:
+    print(f'\nProcessing{stock}')
+    X, y, df = prepare_data(stock)
+
+    if X is None:
+        print('Not enough data, Skipping')
+        continue
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size= 0.2, shuffle= True)
+
+    model.fit(X_train, y_train)
+    preds = model.predict(X_test)
+    acc = accuracy_score(y_test, preds)
+    print(f' accuracy: {acc:.2f}')
+
 
 
     
