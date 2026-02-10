@@ -33,7 +33,7 @@ def add_fibonacci(df, lookback=60):
 
 def prepare_data(symbol):
     df = yf.download(symbol, period= PERIOD, interval= INTERVAL, progress= False)
-    if df.empty() or len(df) < 200:
+    if df.empty or len(df) < 200:
         return None, None, None
     
     #force 1D series
@@ -71,7 +71,7 @@ def prepare_data(symbol):
 
 #model
 model = RandomForestClassifier(
-    n_estimators= 100,
+    n_estimators= 300,
     max_depth= 6,
     min_samples_leaf= 15,
     n_jobs= 1,
@@ -87,12 +87,23 @@ for stock in STOCKS:
     if X is None:
         print('Not enough data, Skipping')
         continue
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size= 0.2, shuffle= True)
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size= 0.2, shuffle= False)
 
     model.fit(X_train, y_train)
     preds = model.predict(X_test)
     acc = accuracy_score(y_test, preds)
     print(f' accuracy: {acc:.2f}')
+
+    latest_features = X.iloc[-1].values.reshape(1, -1)
+    signal = model.predict(latest_features)[0]
+
+    trend = 'UPTREND' if df['sma20'].iloc[-1] > df['sma50'].iloc[-1] else 'DOWNTREND'
+
+    if signal == 1:
+        print(f'Signal: Buy(Swing) | Trend: {trend}')
+    
+    else:
+        print(f'Signal: No Buy/ No Sell | Trend: {trend}')
 
 
 
