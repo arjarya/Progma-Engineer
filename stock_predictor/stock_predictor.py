@@ -33,7 +33,7 @@ def add_fibonacci(df, lookback=60):
 
 #Data Prepration
 
-def prepare_data(symbol):
+def prepare_stock(symbol):
     df = yf.download(symbol, period= PERIOD, interval= INTERVAL, auto_adjust= False, progress= False)
     if df.empty or len(df) < 200:
         return None
@@ -77,6 +77,17 @@ FEATURES = [
 print('\nDownloading and Preparing Data')
 
 frames = []
+
+for stock in STOCKS:
+    print(f'Loading {stock}')
+    df = prepare_stock(stock)
+    if df is not None:
+        frames.append(df)
+
+data = pd.concat(frames)
+X = data[FEATURES]
+y = data['target']
+
 
 
 
