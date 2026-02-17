@@ -63,4 +63,21 @@ def prepare_data(symbol):
     df.dropna(inplace=True)
     return df
 
+FEATURES = [
+    'rsi_dist_50',
+    'rsi_slope',
+    'sma_ratio',
+    'price_sma20',
+    'fib_dist_382',
+    'fib_dist_500',
+    'fib_dist_618',
+    'vol_ratio'
+]
+
+print('\nDownloading and Preparing Data')
+
+frames = []
+
+
+
 
