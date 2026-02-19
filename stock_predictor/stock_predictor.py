@@ -98,8 +98,8 @@ model = RandomForestClassifier(
 )
 
 split = int(len(data) * 0.8)
-X_train, X_test = X[:split], X[split:]
-y_train, y_test = y[:split], y[split:]
+X_train, X_test = X.iloc[:split], X.iloc[split:]
+y_train, y_test = y.iloc[:split], y.iloc[split:]
 
 model.fit(X_train, y_train)
 
@@ -108,6 +108,8 @@ pred = model.predict(X_test)
 precision = precision_score(y_test, pred)
 
 print(f'Model Precision: {precision:.2f}')
+
+print(f'\n Current Signal')
 
 
 
