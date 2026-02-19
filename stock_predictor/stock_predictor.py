@@ -85,8 +85,30 @@ for stock in STOCKS:
         frames.append(df)
 
 data = pd.concat(frames)
+
 X = data[FEATURES]
 y = data['target']
+
+model = RandomForestClassifier(
+    n_estimators=300,
+    max_depth=6,
+    max_leaf_nodes=15,
+    n_jobs=1,
+    random_state=42
+)
+
+split = int(len(data) * 0.8)
+X_train, X_test = X[:split], X[split:]
+y_train, y_test = y[:split], y[split:]
+
+model.fit(X_train, y_train)
+
+pred = model.predict(X_test)
+
+precision = precision_score(y_test, pred)
+
+print(f'Model Precision: {precision:.2f}')
+
 
 
 
