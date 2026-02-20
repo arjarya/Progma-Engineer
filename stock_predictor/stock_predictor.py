@@ -3,11 +3,22 @@ import pandas as pd
 import yfinance as yf
 
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.model_selection import train_test_split
+from sklearn.model_selection import TimeSeriesSplit
 from sklearn.metrics import precision_score
 from ta.momentum import RSIIndicator
 
-STOCKS = ['WIPRO.NS', 'TCS.NS', 'INFY.NS']
+STOCKS = [
+    'WIPRO.NS',
+    'TCS.NS',
+    'INFY.NS',
+    'LTIM.NS',
+    'PERSISTENT.NS',
+    'HCLTECH.NS',
+    'COFORGE.NS',
+    'MPHASIS.NS',
+    'OFSS.NS',
+    'TECHM.NS'
+]
 PERIOD = '3y'
 INTERVAL = '1d'
 FIB_LOOKBACK = 60
@@ -117,9 +128,17 @@ for stock in STOCKS:
         continue
 
     latest = df[FEATURES].iloc[-1].values.reshape(1, -1)
-    trend = model.predict_proba(latest)[0][1]
+    prob = model.predict_proba(latest)[0][1]
 
-    
+    trend = 'Uptrend' if df['sma20'].iloc[-1] > df['sma50'].iloc[-1] else 'Downtrend'
+
+    if prob > PROB_THRESHOLD:
+        print(f'{stock} : Buy | Confidence : {prob:.2f} | Trend : {trend}')
+    else:
+        print(f'{stock} : No Trade | Confidence : {prob:.2f} | Trend : {trend}')
+        
+
+
 
 
 
