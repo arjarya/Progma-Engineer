@@ -100,6 +100,8 @@ data = pd.concat(frames)
 X = data[FEATURES]
 y = data['target']
 
+#Walk forward
+
 model = RandomForestClassifier(
     n_estimators=300,
     max_depth=6,
@@ -108,40 +110,10 @@ model = RandomForestClassifier(
     random_state=42
 )
 
-split = int(len(data) * 0.8)
-X_train, X_test = X.iloc[:split], X.iloc[split:]
-y_train, y_test = y.iloc[:split], y.iloc[split:]
+tscv = TimeSeriesSplit(n_splits=5)
 
-model.fit(X_train, y_train)
+all_preds = []
+all_actual = []
+all_returns = []
 
-pred = model.predict(X_test)
-
-precision = precision_score(y_test, pred)
-
-print(f'Model Precision: {precision:.2f}')
-
-print(f'\n Current Signal')
-
-for stock in STOCKS:
-    df = prepare_stock(stock)
-    if df is None:
-        continue
-
-    latest = df[FEATURES].iloc[-1].values.reshape(1, -1)
-    prob = model.predict_proba(latest)[0][1]
-
-    trend = 'Uptrend' if df['sma20'].iloc[-1] > df['sma50'].iloc[-1] else 'Downtrend'
-
-    if prob > PROB_THRESHOLD:
-        print(f'{stock} : Buy | Confidence : {prob:.2f} | Trend : {trend}')
-    else:
-        print(f'{stock} : No Trade | Confidence : {prob:.2f} | Trend : {trend}')
-        
-
-
-
-
-
-
-
-
+print('\nRunning walk forwar Test\n')
