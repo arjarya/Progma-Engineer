@@ -116,4 +116,25 @@ all_preds = []
 all_actual = []
 all_returns = []
 
-print('\nRunning walk forwar Test\n')
+print('\nRunning walk forward Test\n')
+
+for fold, (train_index, test_index) in enumerate(tscv.split(X)):
+    X_train, X_test = X.iloc[train_index], X.iloc[X_test]
+    y_train, y_test = y.iloc[train_index], y.iloc[y_test]
+
+    model.fit(X_train, y_train)
+
+    probs = model.predict_proba(X_test)[:,1]
+    preds = (probs > RETURN_THRESHOLD).astype(int)
+
+    all_preds.extend(preds)
+    all_actual.extend(y_test)
+
+    forward_ret = data.iloc[test_index]['forward_return']
+    strategy_ret = forward_ret * preds
+
+    all_returns.extend(strategy_ret)
+
+    print(f'Fold {fold + 1} Completed')
+    
+
