@@ -95,7 +95,7 @@ for stock in STOCKS:
     if df is not None:
         frames.append(df)
 
-data = pd.concat(frames)
+data = pd.concat(frames).sort_index()
 
 X = data[FEATURES]
 y = data['target']
