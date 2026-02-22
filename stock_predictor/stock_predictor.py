@@ -136,5 +136,14 @@ for fold, (train_index, test_index) in enumerate(tscv.split(X)):
     all_returns.extend(strategy_ret)
 
     print(f'Fold {fold + 1} Completed')
+
+#Performance
+
+all_preds = np.array(all_preds)
+all_actual = np.array(all_actual)
+all_returns = np.array(all_returns)
+
+precision = precision_score(all_actual, all_preds, zero_division=0)
+
     
 
