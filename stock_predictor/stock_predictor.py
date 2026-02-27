@@ -116,7 +116,7 @@ all_preds = []
 all_actual = []
 all_returns = []
 
-print('\nRunning walk forward Test\n')
+print('\nRunning walk forward backtest\n')
 
 for fold, (train_index, test_index) in enumerate(tscv.split(X)):
     X_train, X_test = X.iloc[train_index], X.iloc[X_test]
@@ -145,5 +145,6 @@ all_returns = np.array(all_returns)
 
 precision = precision_score(all_actual, all_preds, zero_division=0)
 
+equity_curve = (1 + pd.Series(all_returns)).cumprod()
     
 
