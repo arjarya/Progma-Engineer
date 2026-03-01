@@ -151,6 +151,11 @@ total_return = equity_curve.iloc[-1] - 1
 
 max_dradown = (equity_curve / equity_curve.cummax() - 1).min()
 
+print('\nWalk forward result\n')
+
+print(f'Precision: {precision:.2f}')
+print(f'Total_return: {total_return:.2%}')
+print(f'Max_dradown: {max_dradown:.2%}')
 
     
 
