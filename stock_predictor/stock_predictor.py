@@ -146,5 +146,11 @@ all_returns = np.array(all_returns)
 precision = precision_score(all_actual, all_preds, zero_division=0)
 
 equity_curve = (1 + pd.Series(all_returns)).cumprod()
+
+total_return = equity_curve.iloc[-1] - 1
+
+max_dradown = (equity_curve / equity_curve.cummax() - 1).min()
+
+
     
 
