@@ -157,5 +157,11 @@ print(f'Precision: {precision:.2f}')
 print(f'Total_return: {total_return:.2%}')
 print(f'Max_dradown: {max_dradown:.2%}')
 
+print('\n Current Signal\n')
+
+for stock in STOCKS:
+    df = prepare_stock(stock)
+    if df is None:
+        continue
     
 
