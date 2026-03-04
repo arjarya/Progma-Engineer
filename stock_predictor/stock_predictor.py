@@ -163,5 +163,8 @@ for stock in STOCKS:
     df = prepare_stock(stock)
     if df is None:
         continue
+
+    latest = df[FEATURES].iloc[-1].values.reshape(1 , -1)
+    prob = model.predict_proba(latest)[0][1]
     
 
