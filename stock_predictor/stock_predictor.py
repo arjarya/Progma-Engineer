@@ -166,5 +166,10 @@ for stock in STOCKS:
 
     latest = df[FEATURES].iloc[-1].values.reshape(1 , -1)
     prob = model.predict_proba(latest)[0][1]
+
+    trend = 'Uptrend' if df['sma20'].iloc[-1] > df['sma50'].iloc[-1] else 'Downtrend'
+
+    if prob > PROB_THRESHOLD:
+        
     
 
