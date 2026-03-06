@@ -79,9 +79,9 @@ FEATURES = [
     'rsi_slope',
     'sma_ratio',
     'price_sma20',
-    'fib_dist_382',
-    'fib_dist_500',
-    'fib_dist_618',
+    'dist_fib_382',
+    'dist_fib_500',
+    'dist_fib_618',
     'vol_ratio'
 ]
 
@@ -170,6 +170,11 @@ for stock in STOCKS:
     trend = 'Uptrend' if df['sma20'].iloc[-1] > df['sma50'].iloc[-1] else 'Downtrend'
 
     if prob > PROB_THRESHOLD:
+        print(f'{stock}: Buy | Confidence: {prob:.2f} | Trend: {trend}')
+
+    else:
+        print(f'{stock}: No Trade | Confidence: {prob:.2f} | Trend: {trend}')
         
+
     
 
