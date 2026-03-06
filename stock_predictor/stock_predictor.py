@@ -61,7 +61,7 @@ def prepare_stock(symbol):
 
     df['rsi'] = RSIIndicator(close, window=14).rsi()
     df['rsi_dist_50'] = df['rsi'] - 50
-    df['rsi.slope'] = df['rsi'].diff()
+    df['rsi_slope'] = df['rsi'].diff()
 
     df['vol_sma20'] = volume.rolling(20).mean()
     df['vol_ratio'] = volume/df['vol_sma20']
@@ -69,6 +69,8 @@ def prepare_stock(symbol):
     df = add_fibonacci(df, FIB_LOOKBACK)
 
     future_return = (close.shift(-5) - close)/close
+    df['forward_return'] = future_return
+
     df['target'] = (future_return > RETURN_THRESHOLD).astype(int)
     df['symbol'] = symbol
     df.dropna(inplace=True)
@@ -119,8 +121,8 @@ all_returns = []
 print('\nRunning walk forward backtest\n')
 
 for fold, (train_index, test_index) in enumerate(tscv.split(X)):
-    X_train, X_test = X.iloc[train_index], X.iloc[X_test]
-    y_train, y_test = y.iloc[train_index], y.iloc[y_test]
+    X_train, X_test = X.iloc[train_index], X.iloc[test_index]
+    y_train, y_test = y.iloc[train_index], y.iloc[test_index]
 
     model.fit(X_train, y_train)
 
